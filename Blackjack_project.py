@@ -21,10 +21,26 @@
 import random
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
-play = input('Do you want to play a game of Blackjack?')
-your_cards = print(random.choice(cards), random.choice(cards))
-more_cards = input('Another card?')
+play = input('Do you want to play a game of Blackjack? y/n')
+your_cards = (random.choice(cards), random.choice(cards))
+more_cards = input('Another card? y/n')
+total_score_list = []
+computer_card = print(random.choice(cards), random.choice(cards))
+computer_score_list = []
 
+infinite_play = 1 
+total_score_list.append(your_cards)
+total_score = sum(total_score_list)
+computer_score_list.append(computer_card)
+computer_score = sum(computer_score_list)
+
+#while infinite_play == 1:
+if more_cards == 'y':
+    print(f' your card is {your_cards}, your total score is {total_score}, computer score is {computer_score_list[0]}')
+else: 
+    print(f'Your score is {total_score}, the computers score is {computer_score}')     
+if play == 'n':
+    infinite_play = 0
 
 
 
