@@ -23,17 +23,16 @@ cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
 
 def Blackjack():
     play = input('Do you want to play a game of Blackjack? y/n')
-    your_cards = (random.choice(cards), random.choice(cards))
+    your_cards = [random.choice(cards), random.choice(cards)]
     total_score_list = []
-    computer_card = print(random.choice(cards), random.choice(cards))
+    computer_card = [random.choice(cards), random.choice(cards)]
     computer_score_list = []
 
     infinite_play = 1 
-    total_score_list.append(your_cards)
-    total_score = sum(*total_score_list)
-    computer_score_list.append(computer_card)
-    computer_score = sum(*computer_score_list)
-    print((total_score))
+    total_score_list += your_cards
+    total_score = sum(total_score_list)
+    computer_score_list += computer_card
+    computer_score = sum(computer_score_list)
 
 #while infinite_play == 1:
     if play == 'y': 
