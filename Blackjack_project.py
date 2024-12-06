@@ -20,29 +20,37 @@
 ## The computer is the dealer.
 import random
 cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+ 
 
 def Blackjack():
-    play = input('Do you want to play a game of Blackjack? y/n')
-    your_cards = [random.choice(cards), random.choice(cards)]
-    total_score_list = []
-    computer_card = [random.choice(cards), random.choice(cards)]
-    computer_score_list = []
+    #infinite_play = 1
+    
+   # while infinite_play == 1:  
+        play = input('Do you want to play a game of Blackjack? y/n') 
+        your_cards = [random.choice(cards), random.choice(cards)]
+        total_score_list = []
+        computer_card = [random.choice(cards), random.choice(cards)]
+        computer_score_list = []
+        total_score_list += your_cards
+        total_score = sum(total_score_list)
+        computer_score_list += computer_card
+        computer_score = sum(computer_score_list)
+        print(f' your cards are {your_cards}, your total score is {total_score}, computer score is {computer_score_list[0]}, do you want another card?')
 
-    infinite_play = 1 
-    total_score_list += your_cards
-    total_score = sum(total_score_list)
-    computer_score_list += computer_card
-    computer_score = sum(computer_score_list)
-
-#while infinite_play == 1:
-    if play == 'y': 
         more_cards = input('Another card? y/n')
-        if more_cards == 'y':
-            print(f' your card is {your_cards}, your total score is {total_score}, computer score is {computer_score_list[0]}')
-        else: 
-            print(f'Your score is {total_score}, the computers score is {computer_score}')     
-    else:
-        infinite_play = 0
+        
+        while more_cards == 'y':
+            if play == 'y': 
+                if more_cards == 'y':
+                    #give more cards? how???
+                else: 
+                    print(f'Your score is {total_score}, the computers score is {computer_score}') 
+                    if total_score > computer_score and total_score < 21:
+                        print(f'Your total score is {your_cards}, computer score is {computer_card} you win!')    
+                    else: 
+                        print('You lose!')
+    #else:
+    #    infinite_play = 0
 
 Blackjack()
 
