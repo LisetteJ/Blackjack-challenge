@@ -9,7 +9,7 @@
 
 ############### Our Blackjack House Rules #####################
 
-## The deck is unlimited in size. 
+## The deck is unlimited in size.
 ## There are no jokers. 
 ## The Jack/Queen/King all count as 10.
 ## The the Ace can count as 11 or 1.
@@ -19,42 +19,61 @@
 ## Cards are not removed from the deck as they are drawn.
 ## The computer is the dealer.
 import random
-cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
  
+def draw_card():
+    cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
+    return random.choice(cards)
+    
+
+def update_score(cards):
+    return sum(cards)
+
+def win_condition(your_score, computer_score):
+    print(f'Your score is {your_score}, the computers score is {computer_score}') 
+    if your_score > computer_score and your_score < 21:
+        print(f'Your total score is {your_score}, computer score is {computer_score} you win!') 
+    elif your_score > 21 and computer_score <= 21: 
+        print(f'haha you loseeeer score {your_score}, computer wins score {computer_score}')
+    elif your_score == 21:
+        print(f'yay you win! your score: {your_score}, computer score: {computer_score}')
+    else: 
+        print(f'You lose! your score: {your_score}, computer score: {computer_score}')
 
 def Blackjack():
-    #infinite_play = 1
+
+    your_cards = [draw_card(), draw_card()]
+    your_score = update_score(your_cards)
     
-   # while infinite_play == 1:  
-        play = input('Do you want to play a game of Blackjack? y/n') 
-        your_cards = [random.choice(cards), random.choice(cards)]
-        total_score_list = []
-        computer_card = [random.choice(cards), random.choice(cards)]
-        computer_score_list = []
-        total_score_list += your_cards
-        total_score = sum(total_score_list)
-        computer_score_list += computer_card
-        computer_score = sum(computer_score_list)
-        print(f' your cards are {your_cards}, your total score is {total_score}, computer score is {computer_score_list[0]}, do you want another card?')
-
-        more_cards = input('Another card? y/n')
+    computer_cards = [draw_card(), draw_card()]
+    computer_score = update_score(computer_cards)
+            
+    print(f' your cards are {your_cards}, your total score is {your_score}, computer score is {computer_cards[0]}, do you want another card?')
+    
+    while True:
+        more_cards = input('Another card? y/n ')
+        if more_cards != 'y' or your_score > 20 or computer_score >= 21:
+            win_condition(your_score, computer_score)
+            break 
+            
+        your_cards.append(draw_card())
+        your_score = update_score(your_cards)
         
-        while more_cards == 'y':
-            if play == 'y': 
-                if more_cards == 'y':
-                    #give more cards? how???
-                else: 
-                    print(f'Your score is {total_score}, the computers score is {computer_score}') 
-                    if total_score > computer_score and total_score < 21:
-                        print(f'Your total score is {your_cards}, computer score is {computer_card} you win!')    
-                    else: 
-                        print('You lose!')
-    #else:
-    #    infinite_play = 0
+        computer_cards.append(draw_card())
+        computer_score = update_score(computer_cards)
+        
+        print(f'Your card is {your_cards[-1]}, your total score is {your_score}')
+        print(f'computers first card is {computer_cards[0]}')
 
-Blackjack()
-
-
+                    
+def main():
+    play = input('Do you want to play a game of Blackjack? y/n')
+    if play == 'y':
+        Blackjack()
+    else:
+        pass
+        
+if __name__ == '__main__':
+    main()
 
 
 
@@ -133,4 +152,3 @@ Blackjack()
 #Hint 13: Create a function called compare() and pass in the user_score and computer_score. If the computer and user both have the same score, then it's a draw. If the computer has a blackjack (0), then the user loses. If the user has a blackjack (0), then the user wins. If the user_score is over 21, then the user loses. If the computer_score is over 21, then the computer loses. If none of the above, then the player with the highest score wins.
 
 #Hint 14: Ask the user if they want to restart the game. If they answer yes, clear the console and start a new game of blackjack and show the logo from art.py.
-
