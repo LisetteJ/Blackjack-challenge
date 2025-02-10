@@ -28,19 +28,33 @@ def draw_card():
 def update_score(cards):
     return sum(cards)
 
+#def win_condition(your_score, computer_score):
+ #   print(f'Your score is {your_score}, the computers score is {computer_score}') 
+  #  if your_score > computer_score and your_score < 21:
+   #     print(f'Your total score is {your_score}, computer score is {computer_score} you win!') 
+   # elif your_score > 21 and computer_score <= 21: 
+   #     print(f'haha you loseeeer score {your_score}, computer wins score {computer_score}')
+   # elif your_score == 21:
+   #     print(f'yay you win! your score: {your_score}, computer score: {computer_score}')
+   # else: 
+   #     print(f'You lose! your score: {your_score}, computer score: {computer_score}')
+
+winner = 'none'
 def win_condition(your_score, computer_score):
+    
     if your_score == 21:
-        print(f'Your total score is {your_score}, computer score is {computer_score} you win!')
-    elif your_score < 21 and computer_score > 21:
-        print(f'Your total score is {your_score}, computer score is {computer_score} you win!')
-    elif your_score < 21 and computer_score == 21:
-        print(f'Your total score is {your_score}, computer score is {computer_score} you lose!')
-    elif your_score > 21: 
-        print(f'Your total score is {your_score}, computer score is {computer_score} you lose!')
-    elif your_score > computer_score and your_score < 21:
-        print(f'Your total score is {your_score}, computer score is {computer_score} you win!')
-    else:
-        print(f'Your total score is {your_score}, computer score is {computer_score} its a draw!')         #your_score < 21 and computer_score < 21
+        winner = 'you'
+    elif computer_score == 21: 
+        winner = 'computer'    
+    elif computer_score > 21: 
+        winner =  'you'
+    elif your_score > computer_score:
+        winner = 'you'
+    elif your_score > 21:
+        winner = 'computer'
+    else: 
+        winner = 'computer'
+
 
 def Blackjack():
 
@@ -50,14 +64,9 @@ def Blackjack():
     computer_cards = [draw_card(), draw_card()]
     computer_score = update_score(computer_cards)
             
-    print(f' your cards are {your_cards}, your total score is {your_score}, computer score is {computer_cards[0]}, do you want another card?')
+    print(f' your cards are {your_cards}, your total score is {your_score}, computer card is {computer_cards[0]}, do you want another card?')
     
-    while True:
-        more_cards = input('Another card? y/n ')
-        if more_cards != 'y' or your_score > 20 or computer_score >= 21:
-            win_condition(your_score, computer_score)
-            break 
-            
+    def update_cards():        
         your_cards.append(draw_card())
         your_score = update_score(your_cards)
         
@@ -66,10 +75,20 @@ def Blackjack():
         
         print(f'Your card is {your_cards[-1]}, your total score is {your_score}')
         print(f'computers first card is {computer_cards[0]}')
+        
+    update_cards()
+    
+    def again():
+        play_again = input('Do you want another card, you greedy bastard? y/n')
+
+        if play_again == y:
+            win_condition(your_score, computer_score)
+        else: 
+            update_cards()
 
                     
 def main():
-    play = input('Do you want to play a game of Blackjack? y/n')
+    play = input('Do you want to play a game of Blackjack? y/n \n')
     if play == 'y':
         Blackjack()
     else:
