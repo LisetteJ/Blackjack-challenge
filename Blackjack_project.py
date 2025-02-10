@@ -29,15 +29,18 @@ def update_score(cards):
     return sum(cards)
 
 def win_condition(your_score, computer_score):
-    print(f'Your score is {your_score}, the computers score is {computer_score}') 
-    if your_score > computer_score and your_score < 21:
-        print(f'Your total score is {your_score}, computer score is {computer_score} you win!') 
-    elif your_score > 21 and computer_score <= 21: 
-        print(f'haha you loseeeer score {your_score}, computer wins score {computer_score}')
-    elif your_score == 21:
-        print(f'yay you win! your score: {your_score}, computer score: {computer_score}')
-    else: 
-        print(f'You lose! your score: {your_score}, computer score: {computer_score}')
+    if your_score == 21:
+        print(f'Your total score is {your_score}, computer score is {computer_score} you win!')
+    elif your_score < 21 and computer_score > 21:
+        print(f'Your total score is {your_score}, computer score is {computer_score} you win!')
+    elif your_score < 21 and computer_score == 21:
+        print(f'Your total score is {your_score}, computer score is {computer_score} you lose!')
+    elif your_score > 21: 
+        print(f'Your total score is {your_score}, computer score is {computer_score} you lose!')
+    elif your_score > computer_score and your_score < 21:
+        print(f'Your total score is {your_score}, computer score is {computer_score} you win!')
+    else:
+        print(f'Your total score is {your_score}, computer score is {computer_score} its a draw!')         #your_score < 21 and computer_score < 21
 
 def Blackjack():
 
