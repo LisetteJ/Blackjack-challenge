@@ -39,22 +39,26 @@ def update_score(cards):
    # else: 
    #     print(f'You lose! your score: {your_score}, computer score: {computer_score}')
 
-winner = 'none'
-def win_condition(your_score, computer_score):
-    
-    if your_score == 21:
-        winner = 'you'
-    elif computer_score == 21: 
-        winner = 'computer'    
-    elif computer_score > 21: 
-        winner =  'you'
-    elif your_score > computer_score:
-        winner = 'you'
-    elif your_score > 21:
-        winner = 'computer'
-    else: 
-        winner = 'computer'
+#winner = 'none'
+#def win_condition(your_score, computer_score):
+#    if your_score == 21:
+#        winner = 'you'
+#    elif computer_score == 21: 
+#        winner = 'computer'    
+#    elif computer_score > 21: 
+#        winner =  'you'
+#    elif your_score > computer_score:
+#       winner = 'you'
+#    elif your_score > 21:
+#        winner = 'computer'
+#    else: 
+#        winner = 'computer'
 
+def winner(your_score, computer_score):
+    if winner == 'you':
+            print(f'You win, your score is {your_score}')
+    elif winner == 'computer':
+        print(f'you loseeeeeee, your score is{your_score}, computer score is {computer_score}') 
 
 def Blackjack():
 
@@ -78,13 +82,14 @@ def Blackjack():
         
     update_cards()
     
-    def again():
-        play_again = input('Do you want another card, you greedy bastard? y/n')
+    #def more_cards():
+    #    play_again = input('Do you want another card, you greedy bastard? y/n')
+    #    if play_again == 'y':
+    #        update_cards()
+    #    else: 
+    #        winner()
 
-        if play_again == y:
-            win_condition(your_score, computer_score)
-        else: 
-            update_cards()
+'''make a while loop for the computer cards, if computer_score < 17 then check if score is > 21 '''  
 
                     
 def main():
