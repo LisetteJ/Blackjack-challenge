@@ -52,7 +52,7 @@ def draw_card():                                            #select two random c
 def update_score(cards):                                    #calculate the sum of cards 
     return sum(cards)
 
-def Blackjack(your_cards, your_score,computer_cards, computer_score):                                            #main function, hands out cards, appends cards to hand, updates score after each round 
+def Blackjack():                                            #main function, hands out cards, appends cards to hand, updates score after each round 
     your_cards = [draw_card(), draw_card()]
     your_score = update_score(your_cards)
     
@@ -70,9 +70,9 @@ def Blackjack(your_cards, your_score,computer_cards, computer_score):           
             winner = 'computer '
             
 
-    def ace(your_cards, your_score):                                #check if score is > 21 and makes 11 into 1 
-        if 11 in your_cards and your_score > 21:
-            your_new_score = your_score-10 
+    def ace(a, c):                                #check if score is > 21 and makes 11 into 1 
+        if 11 in a and c > 21:
+            your_new_score = a-10 
 
     update_cards()
     early_win()
@@ -96,31 +96,31 @@ def Blackjack(your_cards, your_score,computer_cards, computer_score):           
 
 winner = 'none'
 
-def win_condition(your_score, computer_score):
-    if your_score > computer_score:
+def win_condition(a, b):
+    if a > b:
        winner = 'you'
-    elif your_score > 21:
+    elif a > 21:
         winner = 'computer'
     else: 
         winner = 'computer'
     
-    def winner(your_score, computer_score):
+    def winner(a, b):
         if winner == 'you':
-            print(f'You win, your score is {your_score}, computer score is {computer_score}')
+            print(f'You win, your score is {a}, computer score is {b}')
         elif winner == 'computer':
-            print(f'you loseeeeeee, your score is{your_score}, computer score is {computer_score}') 
+            print(f'you loseeeeeee, your score is{a}, computer score is {b}') 
         else:
             print('Its a draw!')
 
-def main(your_cards, your_score,computer_cards, computer_score):
+def main():
     play = input('Do you want to play a game of Blackjack? y/n \n')
     if play == 'y':
-        Blackjack(your_cards, your_score,computer_cards, computer_score)
+        Blackjack()
     else:
         pass
         
 if __name__ == '__main__':
-    main(your_cards, your_score,computer_cards, computer_score)
+    main()
 
 
 
@@ -131,8 +131,9 @@ if __name__ == '__main__':
 
 
 
-
-
+#a = your_score
+#b = computer_score
+#c = your_cards
 
 
 
