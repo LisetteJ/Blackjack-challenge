@@ -94,8 +94,9 @@ def Blackjack(another_card, winner, your_score):
     early_win(winner)    
     update_cards(your_score)
 
-    def get_another_card(another_card):
+    def get_another_card():
         another_card = input(f' your cards are {your_cards}, your total score is {your_score}, computer card is {computer_cards[0]}, do you want another card? y/n')
+        return another_card
     
     get_another_card(another_card)
     
