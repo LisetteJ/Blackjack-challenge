@@ -49,73 +49,84 @@ def draw_card():                                            #select two random c
     cards = [11, 2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10]
     return random.choice(cards)
     
-def update_score(cards):                                    #calculate the sum of cards 
-    return sum(cards)
-
-def Blackjack():                                            #main function, hands out cards, appends cards to hand, updates score after each round 
-    your_cards = [draw_card(), draw_card()]
-    your_score = update_score(your_cards)
-    
-    computer_cards = [draw_card(), draw_card()]
-    computer_score = update_score(computer_cards)
-            
-    def update_cards():        
-        your_cards.append(draw_card())
-        your_score = update_score(your_cards)
-    
-    def early_win():                                            #check if someone already has 21
-        if your_score == 21:
-            winner = 'you'
-        elif computer_score == 21: 
-            winner = 'computer '
-            
-
-    def ace(a, c):                                #check if score is > 21 and makes 11 into 1 
-        if 11 in a and c > 21:
-            your_new_score = a-10 
-
-    update_cards()
-    early_win()
-    ace()
-    
-    another_card = input(f' your cards are {your_cards}, your total score is {your_score}, computer card is {computer_cards[0]}, do you want another card? y/n')
-
-    if another_card == 'y':                                         #if you want another card, do it again 
-        update_cards()
-        early_win()
-        ace()
-        
-    def computer_turn():
-        while computer_cards < 17:
-            computer_cards.append(draw_card())
-            computer_score = update_score(computer_cards)
-            if computer_score > 21: 
-                winner = 'you'
-            else:
-                winner = 'computer'
+def update_score(cardy):                                    #calculate the sum of cards ###of the whole list????
+    return sum(cardy)
 
 winner = 'none'
 
-def win_condition(a, b):
-    if a > b:
+                                           #main function, hands out cards, appends cards to hand, updates score after each round 
+your_cards = [draw_card(), draw_card()]
+your_score = update_score(your_cards)
+another_card = ""
+    
+computer_cards = [draw_card(), draw_card()]
+computer_score = update_score(computer_cards)
+
+def Blackjack(another_card, winner, your_score): 
+    
+    def computer_turn(computer_cards, winner):
+        while computer_cards < 17:
+            computer_cards.append(draw_card())
+            computer_score = update_score(computer_cards)
+        if computer_score > 21: 
+            winner = 'you'
+        else:
+            winner = 'computer'
+              
+    def update_cards(your_score):        
+        your_cards.append(draw_card())
+        your_score = update_score(your_cards)
+    
+    def early_win(winner):                                            #check if someone already has 21
+        if your_score == 21:
+            winner = 'you'
+        elif computer_score == 21: 
+            winner = 'computer '    
+
+    def ace(your_score, your_cards):                                #check if score is > 21 and makes 11 into 1 
+        if 11 in your_score and your_cards > 21:
+            your_new_score = your_score-10 
+
+        update_cards(your_new_score)
+        early_win(your_new_score)
+        ace(your_new_score)
+    
+    early_win(winner)    
+    update_cards(your_score)
+
+    def get_another_card(another_card):
+        another_card = input(f' your cards are {your_cards}, your total score is {your_score}, computer card is {computer_cards[0]}, do you want another card? y/n')
+    
+    get_another_card(another_card)
+    
+    while another_card == 'y':                          #if you want another card, do it again 
+        update_cards(your_score)
+        another_card = get_another_card()
+        computer_turn()
+        print(another_card)
+        
+
+def win_condition(your_score, computer_score):
+    if your_score > computer_score:
        winner = 'you'
-    elif a > 21:
+    elif your_score > 21:
         winner = 'computer'
     else: 
         winner = 'computer'
+
     
-    def winner(a, b):
+    def winner(your_score, computer_score):
         if winner == 'you':
-            print(f'You win, your score is {a}, computer score is {b}')
+            print(f'You win, your score is {your_score}, computer score is {computer_score}')
         elif winner == 'computer':
-            print(f'you loseeeeeee, your score is{a}, computer score is {b}') 
+            print(f'you loseeeeeee, your score is{your_score}, computer score is {computer_score}') 
         else:
             print('Its a draw!')
 
 def main():
     play = input('Do you want to play a game of Blackjack? y/n \n')
     if play == 'y':
-        Blackjack()
+        Blackjack(another_card, winner, your_score)
     else:
         pass
         
@@ -123,17 +134,6 @@ if __name__ == '__main__':
     main()
 
 
-
-
-
-
-
-
-
-
-#a = your_score
-#b = computer_score
-#c = your_cards
 
 
 
